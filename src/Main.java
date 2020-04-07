@@ -5,6 +5,8 @@
 ** main for 204ducks
 */
 
+import java.math.BigDecimal;
+
 class Main {
     public static float number;
     static boolean isInteger(String s) {
@@ -37,12 +39,18 @@ class Main {
             System.exit(0);
         } else {
             if (isInteger(args[0])) {
-                Math math = new Math();
-               math.Calcul(number);
-               System.exit(0);
+                float givenNumber = Float.parseFloat(args[0]);
+                    if (givenNumber >= 0 && givenNumber <= 2.5) {
+                        Math math = new Math();
+                        DuckMass launchDuckMass = new DuckMass();
+                        
+                        math.Calcul(givenNumber);
+                        launchDuckMass.printDuckMass(givenNumber);
+                        System.exit(0);
+                }
             }
-            System.err.println("Please enter valid argument");
-            System.exit(84);
         }
+        System.err.println("Please enter valid argument");
+        System.exit(84);
     }
 }

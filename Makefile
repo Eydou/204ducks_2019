@@ -9,7 +9,7 @@ JFLAGS = -g
 JC = javac
 DOLLAR:=$$
 SRC = $(shell find src/ -name '*.java')
-PARSE = $(shell find src/ -name '*.java' ! -name 'Math.java')
+PARSE = $(shell find src/ -name '*.java' ! -name 'Math.java' ! -name 'DuckMass.java')
 
 .SUFFIXES: .java .class
 .java.class: $(SRC)

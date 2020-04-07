@@ -5,25 +5,40 @@
 ** Math
 */
 
+import java.util.Locale;
+
 public class Math {
-    double f(double a, double t)
+    public static double averageT;
+
+    static double f(double a, double t)
     {
-        return (java.lang.Math.exp(-t) - (4 - 3 * a) / 2 * java.lang.Math.exp(-2 * t) - (2 * a - 4) / 4 * java.lang.Math.exp(-4 * t));
+        return (a * java.lang.Math.exp(-t) + (4 - 3 * a) *
+        java.lang.Math.exp(-2 * t) + (2 * a - 4) * java.lang.Math.exp(-4 * t));
     }
 
-    /*double integrationSimpson(double nb)
+    static void standardDevation(double a)
     {
+         double res = 0.0;
 
-    }*/
+        for (double t = 0; t < 100.0; t += 0.001, res += java.lang.Math.pow(t - averageT, 2) * f(a, t) / 1000);
 
-    /*double averageTime(double a)
+        res = java.lang.Math.sqrt(res);
+        String resPrint = String.format(Locale.ENGLISH, "%.3f\n", res);
+        System.out.print("Standard deviation: " + resPrint);
+    }
+
+    static void averageTime(double a)
     {
-    double res = 0.0;
+        double res = 0.0;
 
-   // print("mean return time: %dm %.2ds" % (res, (res * 60) % 60))
-    }*/
+        for (double t = 0; t < 1000.0; t += 0.1, res += f(a, t) * t / 10, averageT = res);
+    
+        System.out.println("Average return time: " + (int)res + "m " +
+        java.lang.Math.round(java.lang.Math.ceil((res - (int)res) * 60)) + "s");
+    }
 
     public static void Calcul(double nb) {
-        System.out.println(nb);
+        averageTime(nb);
+        standardDevation(nb);
     }
 }
